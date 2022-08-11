@@ -1,6 +1,6 @@
-var fileGenerator = require("./");
-var fs = require("fs");
-var inquirer = require('inquirer');
+import fileGenerator from "./fileGenerator";
+import { writeFile } from "fs";
+import { prompt } from 'inquirer';
 
 // questions to ask the user //
 let questions = [
@@ -23,13 +23,13 @@ let questions = [
     },
 ];
 
-inquirer.prompt(questions).then(function(response) {
+prompt(questions).then(function(response) {
     console.log(response);
 
     var content = fileGenerator(response);
     console.log(content);
 
-    fs.writeFile("./README.md", content, function(err){
+    writeFile("./README.md", content, function(err){
         if (err) throw err
         console.log("success");
     });
