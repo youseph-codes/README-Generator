@@ -15,34 +15,22 @@ let questions = [
     }, {
         type: "input",
         message: "What is your GitHub user name?",
-        name: "username",
+        name: "userName",
     }, {
         type: "input",
         message: "What is your email address?",
         name: "email",
-    }, {
-        type: "input",
-        message: "",
-        name: "",
-    }, {
-        type: "input",
-        message: "",
-        name: "",
-    }, {
-        type: "input",
-        message: "",
-        name: "",
-    }, {
-        type: "input",
-        message: "",
-        name: "",
-    }, {
-        type: "input",
-        message: "",
-        name: "",
-    }, {
-        type: "input",
-        message: "",
-        name: "",
     },
-]
+];
+
+inquirer.prompt(questions).then(function(response) {
+    console.log(response);
+
+    var content = fileGenerator(response);
+    console.log(content);
+
+    fs.writeFile("./README.md", content, function(err){
+        if (err) throw err
+        console.log("success");
+    });
+});
